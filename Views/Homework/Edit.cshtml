@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Ödevi Düzenle";
+}
+@model HomeworkModel
+
+
+<style>
+    .outer-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 76vh;
+        margin: 0px 0px 100px 0px;
+    }
+
+    .inner-frame {
+        text-align: left;
+        border: 2px solid #ccc;
+        padding: 20px;
+        background-color: #f9f9f9;
+        width: 450px;
+    }
+
+    .form-group {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .btn-group {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .btn-group a,
+        .btn-group input[type="submit"] {
+            flex: 2;
+            margin: 0 20px;
+        }
+</style>
+
+<style>
+    .btn-primary {
+        font-size: 16px;
+        width: 100px;
+    }
+
+    .btn-secondary {
+        font-size: 16px;
+        width: 100px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        width: 350px;
+        margin: 20px 80px -20px;
+    }
+
+    .btn {
+        font-size: 16px;
+        margin: 10px;
+    }
+
+    .input-width {
+        width: 400px;
+    }
+
+    .margin-ders {
+        margin: 12px 0px 0px;
+    }
+</style>
+<div class="outer-frame">
+    <div class="inner-frame">
+        <h2>Ödevi Düzenle</h2>
+        <hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Edit">
+            <div class="mb-3">
+                <div class="margin-ders">
+                <label asp-for="Name" class="form-label">Ders Adı</label>
+                </div>
+                <div class="input-width">
+                <input type="text" class="form-control" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Konu</label>
+                <div class="input-width">
+                <input type="text" class="form-control" asp-for="Description">
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label">Puan</label>
+                        <div class="input-width">
+                            @{
+                                var formattedPrice = Model.Price.ToString(",00");
+
+                                if (formattedPrice.EndsWith("00") && Model.Price != 100)
+                                {
+                                    formattedPrice = formattedPrice.Replace("00", "0");
+                                }
+                            }
+
+                            <input type="text" class="form-control" value="@formattedPrice">
+                        </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+                    <label class="form-label">Durumu</label>
+
+            @if (Model.Status)
+                            {
+                                <a asp-action="ChangeStatus" asp-route-id="@Model.Id" asp-route-st="False"><span class="badge bg-success link-opacity-10">Teslim Edildi</span></a>
+                            }
+                            else
+                            {
+                                <a asp-action="ChangeStatus" asp-route-id="@Model.Id" asp-route-st="True"><span class="badge bg-danger link-opacity-10">Teslim Edilmedi</span></a>
+                            }
+
+
+            <div class="button-container">
+            <div class="mb-3">
+                <input type="hidden" asp-for="Id" />
+                <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}
+

@@ -1,0 +1,35 @@
+﻿
+<style>
+    .button {
+        margin:10px 10px 10px 10px;
+
+    }
+</style>
+
+<ul class="navbar-nav">
+    
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+            </li>
+            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Homework" asp-action="Index">Ödevler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Kontrol Paneli</a>
+                        </li>
+        }
+
+    @if (User.IsInRole("Uye"))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UserHomeworks">Ödevlerim</a>
+        </li>
+        
+    }
+
+</ul>

@@ -1,0 +1,37 @@
+﻿
+<style>
+    .button {
+        margin:10px 10px 10px 10px;
+
+    }
+</style>
+
+<ul class="navbar-nav">
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UserPage">
+                Merhaba @User.Identity.Name,
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Oturumu Kapat</a>
+        </li>
+
+    }
+    else
+    {
+        <div class="button">
+        <li class="nav-item">
+            <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Login">Oturum Aç</a>
+        </li>
+        </div>
+        
+        <div class="button">
+        <li class="nav-item">
+            <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="Register">Kayıt Ol</a>
+        </li>
+        </div>
+    }
+</ul

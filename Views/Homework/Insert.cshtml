@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Ödev Ekle";
+}
+@model HomeworkModel
+
+<style>
+    .outer-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 82vh;
+        margin: 0px 0px 100px 0px;
+    }
+
+    .inner-frame {
+        text-align: left;
+        border: 2px solid #ccc;
+        padding: 20px;
+        background-color: #f9f9f9;
+        width: 450px;
+       
+    }
+
+    .form-group {
+        margin-top:20px;
+        margin-bottom: 15px;
+    }
+
+    .btn-group {
+        
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-group a,
+    .btn-group input[type="submit"] {
+        flex: 2;
+        margin: 0 20px;
+}
+        
+</style>
+
+<div class="outer-frame">
+    <div class="inner-frame">
+        <h2>Ödev Ekle</h2>
+        <hr />
+
+        <form method="post" asp-action="Insert">
+            <div class="form-group">
+                <label asp-for="Name" class="form-label">Ders Adı</label>
+                <input type="text" class="form-control" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="form-label">Konu</label>
+                <input type="text" class="form-control" asp-for="Description">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price" class="form-label">Puan</label>
+                <input type="text" class="form-control" asp-for="Price" value="0">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="btn-group">
+                <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

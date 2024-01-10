@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Ödev Sil";
+}
+
+@model HomeworkModel
+
+<style>
+    .outer-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-top:-100px;
+        margin-bottom:100px;
+    }   
+
+    .inner-frame {
+        text-align: center;
+        border: 2px solid #ccc; 
+        padding: 80px;
+        background-color: #f9f9f9; 
+    }
+</style>
+
+<style>
+    .btn-danger {
+        font-size: 16px;
+        width: 100px;
+    }
+    .btn-secondary {
+        font-size: 16px;
+        width: 100px;
+    }
+</style>
+
+<div class="outer-frame">
+    <div class="inner-frame">
+        <h4>"<b>@Model.Name</b>" Dersinin "<b>@Model.Description</b>" Konulu Ödevi Silinecektir. Onaylıyor musunuz ?</h4>
+        <form asp-controller="Product" asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="mt-4">
+                <input type="submit" value="Sil" class="btn btn-danger mx-8" />
+                <a asp-action="Index" class="btn btn-secondary mx-2">Geri Dön</a>
+             
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Ödev Detayı";
+}
+@model HomeworkModel
+
+<style>
+    .outer-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        margin: 0px 0px 140px 0px;
+    }
+
+    .inner-frame {
+        text-align: left;
+        border: 2px solid #ccc;
+        padding: 20px;
+        background-color: #f9f9f9;
+        width: 500px; 
+    }
+
+    .row {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .btn-group {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-group a,
+    .btn-group input[type="submit"] {
+        flex: 2;
+        margin: 0 20px;
+    }
+</style>
+
+<style>
+    .btn-danger,
+    .btn-secondary,
+    .btn-primary {
+        font-size: 16px;
+        width: 100px;
+        margin: 10px 10px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        width: 350px;
+        margin: 0px 25px;
+    }
+
+    .btn {
+        font-size: 16px;
+        margin: 10px;
+    }
+
+    .info-width {
+        width: 500px;
+    }
+
+    .margin-table {
+        margin: 13px 0px 27px;
+    }
+</style>
+
+<div class="outer-frame">
+    <div class="inner-frame">
+        <h2>Ödev Detayı</h2>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-67">
+                <div class="margin-table">
+                    <table class="table">
+                        <tr>
+                            <td><b>Ders Adı:</b></td>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <td><b>Konu:</b></td>
+                            <td>@Model.Description</td>
+                        </tr>
+                        <tr>
+                            <td><b>Puan:</b></td>
+                            <td>
+                                @{
+                                    var formattedPrice = Model.Price.ToString(",00");
+
+                                    if (formattedPrice.EndsWith("00") && Model.Price != 100)
+                                    {
+                                        formattedPrice = formattedPrice.Replace("00", "0");
+                                    }
+
+                                    @formattedPrice
+                                }
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Durumu:</b></td>
+                            <td>
+                                @if (Model.Status)
+                                {
+                                    <a asp-action="ChangeStatus" asp-route-id="@Model.Id" asp-route-st="False"><span class="badge bg-success link-opacity-10">Teslim Edildi</span></a>
+                                }
+                                else
+                                {
+                                    <a asp-action="ChangeStatus" asp-route-id="@Model.Id" asp-route-st="True"><span class="badge bg-danger link-opacity-10">Teslim Edilmedi</span></a>
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="button-container">
+                    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Sil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

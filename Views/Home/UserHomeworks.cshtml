@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Ödevlerim";
+}
+<h1>@ViewData["Title"]</h1>
+
+<style>
+    .table-hover tbody tr:hover {
+        background-color: #E7F0FF; /* Bu rengi kendi tercihinize göre değiştirebilirsiniz */
+    }
+
+    .merich {
+        margin: 0px 0px 300px 0px;
+    }
+</style>
+
+<div class="merich">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>SN</th>
+                <th>Ders</th>
+                <th>Konu</th>
+                <th>Puan</th>
+                <th>Durumu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Fizik</td>
+                <td>Basit Harmonik Hareket</td>
+                <td>-</td>
+                <td>Teslim Edilmedi</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Tarih</td>
+                <td>İlk Çağ Toplumları</td>
+                <td>-</td>
+                <td>Teslim Edilmedi</td>
+            </tr>
+            <!-- Buraya diğer ödevlerinizi ekleyebilirsiniz -->
+        </tbody>
+    </table>
+</div>

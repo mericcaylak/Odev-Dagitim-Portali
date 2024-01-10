@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+@model RegisterModel
+
+<style>
+    .register {
+        margin: 50px 0px 0px 0px;
+        margin-bottom: 72px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+    .topla{
+        margin:65px 0px 0px 0px;
+    }
+</style>
+
+<div class="topla">
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+                <h3>Kayıt Ol</h3>
+            </div>
+            <div class="card-body">
+                <form asp-action="Register" method="post" enctype="multipart/form-data">
+                    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label visually-hidden">Ad Soyad</label>
+                        <input asp-for="FullName" class="form-control" placeholder="Ad Soyad" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label visually-hidden">E-posta</label>
+                        <input asp-for="Email" class="form-control" placeholder="E-posta" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label visually-hidden">Kullanıcı Adı</label>
+                        <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label visually-hidden">Şifre</label>
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Şifre" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PasswordConfirm" class="form-label visually-hidden">Şifre Onayı</label>
+                        <input type="password" asp-for="PasswordConfirm" class="form-control" placeholder="Şifre Onayı" />
+                        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="City" class="form-label visually-hidden">Şehir</label>
+                        <input asp-for="City" class="form-control" placeholder="Şehir" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <p class="mb-0">Zaten bir hesabınız var mı? <a asp-action="Login">Oturum aç</a></p>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
